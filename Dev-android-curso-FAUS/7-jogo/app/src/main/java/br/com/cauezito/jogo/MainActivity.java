@@ -10,11 +10,13 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    Integer vitorias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        vitorias = 0;
     }
 
     public void pedra(View view){
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void geraResultado(String escolhaUsuario){
         ImageView imagemResultado = (ImageView) findViewById(R.id.imgResultado);
         TextView txtResultado = findViewById(R.id.txtResultado);
+        TextView qtdVitorias = findViewById(R.id.vitorias);
         String[] opcoes = {"pedra", "papel", "tesoura"};
         int numero = new Random().nextInt(3);
         String escolhaApp = opcoes[numero];
@@ -46,13 +49,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
       if(escolhaApp.equals("pedra") && escolhaUsuario.equals("tesoura")
-      || escolhaApp.equals("papel") && escolhaUsuario.equals("pedra")
+              || escolhaApp.equals("papel") && escolhaUsuario.equals("pedra")
       || escolhaApp.equals("tesoura") && escolhaUsuario.equals("papel")){ //app ganhador
             txtResultado.setText("O app ganhou!");
       } else if(escolhaUsuario.equals("pedra") && escolhaApp.equals("tesoura")
               || escolhaUsuario.equals("papel") && escolhaApp.equals("pedra")
               || escolhaUsuario.equals("tesoura") && escolhaApp.equals("papel")){ //usuário ganhador
           txtResultado.setText("Você ganhou!");
+          vitorias++;
+          qtdVitorias.setText(vitorias.toString());
+
       } else { // empate
           txtResultado.setText("Empate!");
       }
