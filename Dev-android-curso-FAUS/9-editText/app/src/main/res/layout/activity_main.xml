@@ -110,16 +110,27 @@
         android:onClick="abrirDialog"
         android:text="Abrir dialog" />
 
-    <Button
-        android:id="@+id/btnEnviar"
-        android:layout_width="333dp"
+    <ProgressBar
+        android:id="@+id/pbCarregando"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="resultado"
-        android:text="ENVIAR" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:max="100" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="carregarProgressBar"
+        android:text="CARREGAR " />
 
 </LinearLayout>
 </ScrollView>
