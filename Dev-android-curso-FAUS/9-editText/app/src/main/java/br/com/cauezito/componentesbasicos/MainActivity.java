@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -74,7 +76,18 @@ public class MainActivity extends AppCompatActivity {
     public void resultado(View view){
         String nomeProduto = produto.getText().toString();
         verificaCheck();
+    }
 
+    public void abrirToast(View view){
+        //Toast.makeText(this, "Deu certo!", Toast.LENGTH_LONG).show();
 
+        //customizado
+        ImageView img = new ImageView(getApplicationContext());
+        img.setImageResource(android.R.drawable.star_big_on);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(img);
+        toast.show();
     }
 }
