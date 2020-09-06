@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -16,8 +18,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextInputEditText produto;
-    private CheckBox cbBranco, cbVermelho, cbRosa, cbAzul;
+    private CheckBox cbBranco, cbVermelho;
     private RadioGroup rgEstoque;
+    private Switch swEndereco;
+    private ToggleButton toggleBtn;
+    private CheckBox checkSenha;
+
     List<String> check = new ArrayList<String>();
 
     @Override
@@ -27,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
         produto = findViewById(R.id.editText);
         cbBranco = findViewById(R.id.cbBranco);
         cbVermelho = findViewById(R.id.cbVermelho);
-        cbRosa = findViewById(R.id.cbRosa);
-        cbAzul = findViewById(R.id.cbAzul);
         rgEstoque = findViewById(R.id.rgEstoque);
+        toggleBtn = findViewById(R.id.toggleBtn);
+        checkSenha = findViewById(R.id.checkSenha);
+        swEndereco = findViewById(R.id.swEndereco);
         verificaRadioButton();
     }
 
@@ -42,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         if(cbVermelho.isChecked()){
             check.add(cbVermelho.getText().toString());
         }
-        if(cbAzul.isChecked()){
-            check.add(cbAzul.getText().toString());
-        }
-        if(cbRosa.isChecked()){
-            check.add(cbRosa.getText().toString());
-        }
+       if(swEndereco.isChecked()){
+           check.add(swEndereco.getText().toString());
+       }
+       if(toggleBtn.isChecked()){
+           check.add(toggleBtn.getText().toString());
+       }
     }
 
     public void verificaRadioButton(){

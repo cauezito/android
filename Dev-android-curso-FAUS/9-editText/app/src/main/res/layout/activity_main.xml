@@ -14,8 +14,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="337dp"
+            android:layout_height="34dp"
             android:layout_marginBottom="10dp"
             android:hint="Nome do produto" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -32,18 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="vermelho" />
-
-    <CheckBox
-        android:id="@+id/cbRosa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="rosa" />
-
-    <CheckBox
-        android:id="@+id/cbAzul"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="azul" />
 
     <CheckBox
         android:id="@+id/cbBranco"
@@ -77,7 +65,27 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="Não" />
+
+        <Switch
+            android:id="@+id/swEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lembrar endereço" />
     </RadioGroup>
+
+    <ToggleButton
+        android:id="@+id/toggleBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ToggleButton"
+        android:textOff="Desligado"
+        android:textOn="Ligado" />
+
+    <CheckBox
+        android:id="@+id/checkSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lembrar senha" />
 
     <Button
         android:id="@+id/btnEnviar"
