@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextInputEditText produto;
-    private CheckBox cbBranco, cbVermelho;
+    private CheckBox cbVermelho;
     private RadioGroup rgEstoque;
     private Switch swEndereco;
     private ToggleButton toggleBtn;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ProgressBar progressBarCarregamento;
     private int progresso = 0;
+    private SeekBar seekBar;
+    private TextView txtResultadoSeekBar;
 
     List<String> check = new ArrayList<String>();
 
@@ -39,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         produto = findViewById(R.id.editText);
-        cbBranco = findViewById(R.id.cbBranco);
         cbVermelho = findViewById(R.id.cbVermelho);
         rgEstoque = findViewById(R.id.rgEstoque);
         toggleBtn = findViewById(R.id.toggleBtn);
@@ -48,15 +50,30 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         progressBarCarregamento = findViewById(R.id.pbCarregando);
         progressBarCarregamento.setVisibility(View.GONE);
+        seekBar = findViewById(R.id.seekBar);
+        txtResultadoSeekBar = findViewById(R.id.txtResultadoSeekBar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                txtResultadoSeekBar.setText(i + "/" + seekBar.getMax());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(MainActivity.this, "SeekBar alterado!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(MainActivity.this, "SeekBar parado", Toast.LENGTH_SHORT).show();
+            }
+        });
         verificaRadioButton();
     }
 
     public void verificaCheck(){
         check.clear();
-
-        if(cbBranco.isChecked()){
-            check.add(cbBranco.getText().toString());
-        }
+        
         if(cbVermelho.isChecked()){
             check.add(cbVermelho.getText().toString());
         }
@@ -132,10 +149,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void carregarProgressBar(View view){
         progressBarCarregamento.setVisibility(View.VISIBLE);
-       /* this.progresso = this.progresso + 10;
-        progressBar.setProgress(this.progresso);*/
+       this.progresso = this.progresso + 10;
+        progressBar.setProgress(this.progresso);
+        if(this.progresso == 100){
+            progressBarCarregamento.setVisibility(View.GONE);
+        }
 
-       new Thread(new Runnable() {
+      /* new Thread(new Runnable() {
            @Override
            public void run() {
                for(int i=0; i<=100; i++){
@@ -150,12 +170,12 @@ public class MainActivity extends AppCompatActivity {
                        }
                    });
                    try {
-                       Thread.sleep(100);
+                       Thread.sleep(40);
                    } catch (InterruptedException e) {
                        e.printStackTrace();
                    }
                }
            }
-       });
+       });*/
     }
 }
