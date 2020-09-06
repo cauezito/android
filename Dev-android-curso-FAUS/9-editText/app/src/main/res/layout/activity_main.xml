@@ -80,6 +80,8 @@
         android:id="@+id/toggleBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:text="ToggleButton"
         android:textOff="Desligado"
         android:textOn="Ligado" />
@@ -94,8 +96,19 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:onClick="abrirToast"
         android:text="Abrir toast" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="abrirDialog"
+        android:text="Abrir dialog" />
 
     <Button
         android:id="@+id/btnEnviar"

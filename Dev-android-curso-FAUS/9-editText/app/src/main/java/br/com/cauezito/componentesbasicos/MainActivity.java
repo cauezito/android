@@ -1,7 +1,9 @@
 package br.com.cauezito.componentesbasicos;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -89,5 +91,35 @@ public class MainActivity extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(img);
         toast.show();
+    }
+
+    public void abrirDialog(View view){
+        /*
+        * Criar alertDialog
+        * */
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        //Configurar título e mensagem
+        dialog.setTitle("Atenção!");
+        dialog.setMessage("É necessário que você tenha atenção. Concorda?");
+        //Configurar cancelamento
+        dialog.setCancelable(false);
+        //Configurar ações para os botões sim e não
+        dialog.setPositiveButton("Concordo", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "Você concordou!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.setNegativeButton("Não concordo", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "Você não concordou!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //criar e exibir a dialog
+        dialog.create();
+        dialog.show();
     }
 }
