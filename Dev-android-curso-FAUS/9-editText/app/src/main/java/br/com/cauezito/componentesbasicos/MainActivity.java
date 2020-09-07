@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void verificaCheck(){
         check.clear();
-        
+
         if(cbVermelho.isChecked()){
             check.add(cbVermelho.getText().toString());
         }

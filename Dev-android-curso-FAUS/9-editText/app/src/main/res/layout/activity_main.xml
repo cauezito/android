@@ -137,7 +137,8 @@
         android:id="@+id/txtResultadoSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RESULTADO" />
+        android:text="RESULTADO"
+        tools:visibility="visible" />
 
 </LinearLayout>
 </ScrollView>
