@@ -10,9 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 import br.com.cauezito.recyclerview.R;
+import br.com.cauezito.recyclerview.activity.model.Filme;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
+
+    private List<Filme> listaFilmes;
+    public Adapter(List<Filme> filmes) {
+        this.listaFilmes = filmes;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -23,14 +32,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.titulo.setText("Viagem macabra");
-        holder.genero.setText("Terror");
-        holder.ano.setText("2020");
+        Filme filme = listaFilmes.get(position);
+        holder.titulo.setText(filme.getTitulo());
+        holder.genero.setText(filme.getGenero());
+        holder.ano.setText(filme.getAno());
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return listaFilmes.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
