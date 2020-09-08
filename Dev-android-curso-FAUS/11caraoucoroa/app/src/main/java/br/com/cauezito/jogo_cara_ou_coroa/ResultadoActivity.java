@@ -22,8 +22,8 @@ public class ResultadoActivity extends AppCompatActivity {
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                //destrói a activity atual
+                finish();
             }
         });
         Bundle resultado = getIntent().getExtras();
@@ -35,6 +35,5 @@ public class ResultadoActivity extends AppCompatActivity {
         if(numero == 0) {
             imgResultado.setImageResource(R.drawable.moeda_coroa);
         }
-        System.out.println("NUMEROOOO => " + numero);
     }
 }
