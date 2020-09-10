@@ -1,11 +1,13 @@
-package br.com.cauezito.navigationdrawer;
+package br.com.cauezito.atm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -15,6 +17,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import br.com.cauezito.atm.R;
+import br.com.cauezito.atm.util.Util;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                enviaEmail();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_principal, R.id.nav_servicos, R.id.nav_clientes)
+                R.id.nav_principal, R.id.nav_servicos, R.id.nav_clientes, R.id.nav_sobre)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -59,5 +63,16 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void enviaEmail(){
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"nokylevs@gmail.com"});
+        email.putExtra(Intent.EXTRA_SUBJECT, "Contato pelo aplicativo");
+        email.putExtra(Intent.EXTRA_TEXT, "Mensagem automática") ;
+
+        //configurar apps para e-mail
+        email.setType("message/rfc822");
+        startActivity(Intent.createChooser(email, "Escolha o app para enviar o e-mail!"));
     }
 }

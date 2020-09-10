@@ -1,14 +1,14 @@
-package br.com.cauezito.navigationdrawer.ui.clientes;
+package br.com.cauezito.atm.fragment.principal;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ClientesViewModel extends ViewModel {
+public class PrincipalViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ClientesViewModel() {
+    public PrincipalViewModel() {
         mText = new MutableLiveData<>();
 
     }

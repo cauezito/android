@@ -1,13 +1,14 @@
-package br.com.cauezito.navigationdrawer.ui.sobre;
+package br.com.cauezito.atm.fragment.servicos;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SobreViewModel extends ViewModel {
+public class ServicosViewModel extends ViewModel {
+
     private MutableLiveData<String> mText;
 
-    public SobreViewModel() {
+    public ServicosViewModel() {
         mText = new MutableLiveData<>();
 
     }

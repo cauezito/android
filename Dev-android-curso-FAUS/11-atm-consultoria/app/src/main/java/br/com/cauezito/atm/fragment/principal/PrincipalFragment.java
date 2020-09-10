@@ -1,4 +1,4 @@
-package br.com.cauezito.navigationdrawer.ui.clientes;
+package br.com.cauezito.atm.fragment.principal;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,19 +12,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import br.com.cauezito.navigationdrawer.R;
+import br.com.cauezito.atm.R;
 
-public class ClientesFragment extends Fragment {
+public class PrincipalFragment extends Fragment {
 
-    private ClientesViewModel clientesViewModel;
+    private PrincipalViewModel principalViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        clientesViewModel =
-                ViewModelProviders.of(this).get(ClientesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_clientes, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        clientesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        principalViewModel =
+                ViewModelProviders.of(this).get(PrincipalViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_principal, container, false);
+        final TextView textView = root.findViewById(R.id.text_home);
+        principalViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

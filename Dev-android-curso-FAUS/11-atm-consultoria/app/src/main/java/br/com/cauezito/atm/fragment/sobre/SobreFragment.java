@@ -1,4 +1,4 @@
-package br.com.cauezito.navigationdrawer.ui.sobre;
+package br.com.cauezito.atm.fragment.sobre;
 
 import android.os.Bundle;
 
@@ -13,8 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import br.com.cauezito.navigationdrawer.R;
-import br.com.cauezito.navigationdrawer.ui.servicos.ServicosViewModel;
+import br.com.cauezito.atm.R;
 
 public class SobreFragment extends Fragment {
     SobreViewModel sobreViewModel;
@@ -23,7 +22,7 @@ public class SobreFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         sobreViewModel =
                 ViewModelProviders.of(this).get(SobreViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_servicos, container, false);
+        View root = inflater.inflate(R.layout.fragment_sobre, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
         sobreViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

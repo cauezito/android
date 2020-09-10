@@ -1,4 +1,4 @@
-package br.com.cauezito.navigationdrawer.ui.servicos;
+package br.com.cauezito.atm.fragment.servicos;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import br.com.cauezito.navigationdrawer.R;
+import br.com.cauezito.atm.R;
 
 public class ServicosFragment extends Fragment {
 
