@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import br.com.cauezito.atm.R;
-import br.com.cauezito.atm.util.Util;
+import mehdi.sakout.aboutpage.AboutPage;
 
 public class MainActivity extends AppCompatActivity {
 
