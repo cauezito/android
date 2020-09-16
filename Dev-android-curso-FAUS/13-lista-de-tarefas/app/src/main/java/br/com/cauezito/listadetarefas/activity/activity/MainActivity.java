@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import br.com.cauezito.listadetarefas.R;
 import br.com.cauezito.listadetarefas.activity.adapter.TarefaAdapter;
+import br.com.cauezito.listadetarefas.activity.helper.RecyclerItemClickListener;
 import br.com.cauezito.listadetarefas.activity.model.Tarefa;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +34,26 @@ public class MainActivity extends AppCompatActivity {
         btnNovaTarefa = findViewById(R.id.btnNovaTarefa);
         listaTarefas = findViewById(R.id.listaTarefas);
 
-        carregaTarefas();
+        listaTarefas.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(), listaTarefas, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    }
+                }
+                )
+        );
 
         btnNovaTarefa.setOnClickListener(new View.OnClickListener(){
 
@@ -52,13 +73,12 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new TarefaAdapter(listaDeTarefas);
 
-        //configurando o gerenciador de layout para ser uma lista
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listaTarefas.setHasFixedSize(true);
         listaTarefas.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
         listaTarefas.setAdapter(adapter);
         listaTarefas.setLayoutManager(layoutManager);
-        //adiciona o adapter que anexará os objetos à lista
+
     }
 
 
