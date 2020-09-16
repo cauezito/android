@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import br.com.cauezito.listadetarefas.R;
 import br.com.cauezito.listadetarefas.activity.adapter.TarefaAdapter;
+import br.com.cauezito.listadetarefas.activity.helper.DbHelper;
 import br.com.cauezito.listadetarefas.activity.helper.RecyclerItemClickListener;
 import br.com.cauezito.listadetarefas.activity.model.Tarefa;
 
@@ -33,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btnNovaTarefa = findViewById(R.id.btnNovaTarefa);
         listaTarefas = findViewById(R.id.listaTarefas);
+
+
+
 
         listaTarefas.addOnItemTouchListener(
                 new RecyclerItemClickListener(
