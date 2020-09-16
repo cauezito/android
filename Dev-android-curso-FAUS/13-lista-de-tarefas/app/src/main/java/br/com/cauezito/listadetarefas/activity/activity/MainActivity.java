@@ -1,11 +1,13 @@
 package br.com.cauezito.listadetarefas.activity.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView listaTarefas;
     private TarefaAdapter adapter;
     private List<br.com.cauezito.listadetarefas.activity.model.Tarefa> listaDeTarefas = new ArrayList<>();
+    private Tarefa tarefaSelecionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
         listaTarefas.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(), listaTarefas, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
+
+                    @Override //editar a tarefa
                     public void onItemClick(View view, int position) {
-                        //edição
+
                         Tarefa tarefaSelecionada = listaDeTarefas.get(position);
 
                         Intent intent = new Intent(MainActivity.this, NovaTarefaActivity.class);
@@ -50,8 +54,25 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    @Override
+                    @Override //remover a tarefa
                     public void onLongItemClick(View view, int position) {
+                        tarefaSelecionada = listaDeTarefas.get(position);
+
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                        dialog.setTitle("É isso mesmo?");
+                        dialog.setMessage("Tem certeza que deseja excluir essa tarefa?");
+                        dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+                                if(tarefaDAO.deletar(tarefaSelecionada)){
+                                    carregaTarefas();
+                                }
+                            }
+                        });
+                        dialog.setNegativeButton("Não", null);
+                        dialog.create();
+                        dialog.show();
 
                     }
 

@@ -72,6 +72,7 @@ public class NovaTarefaActivity extends AppCompatActivity {
                     }
                 }
                 break;
+
         }
         return super.onOptionsItemSelected(item);
     }
