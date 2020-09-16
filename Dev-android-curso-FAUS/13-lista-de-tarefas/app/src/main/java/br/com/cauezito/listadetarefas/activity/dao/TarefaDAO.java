@@ -2,8 +2,10 @@ package br.com.cauezito.listadetarefas.activity.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.cauezito.listadetarefas.activity.helper.DbHelper;
@@ -45,6 +47,22 @@ public class TarefaDAO implements ITarefaDAO {
 
     @Override
     public List<Tarefa> todasAsTarefas() {
-        return null;
+        List<Tarefa> tarefas = new ArrayList<>();
+        String sql = "SELECT * FROM " + DbHelper.TABELA_TAREFAS + "; ";
+        Cursor c = consultar.rawQuery(sql, null);
+
+        while(c.moveToNext()){
+            Tarefa tarefa = new Tarefa();
+
+            Long id = c.getLong(c.getColumnIndex("id"));
+            String nome = c.getString(c.getColumnIndex("nome"));
+
+            tarefa.setId(id);
+            tarefa.setNome(nome);
+
+            tarefas.add(tarefa);
+        }
+
+        return tarefas;
     }
 }

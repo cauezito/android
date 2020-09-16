@@ -19,6 +19,7 @@ import java.util.List;
 
 import br.com.cauezito.listadetarefas.R;
 import br.com.cauezito.listadetarefas.activity.adapter.TarefaAdapter;
+import br.com.cauezito.listadetarefas.activity.dao.TarefaDAO;
 import br.com.cauezito.listadetarefas.activity.helper.DbHelper;
 import br.com.cauezito.listadetarefas.activity.helper.RecyclerItemClickListener;
 import br.com.cauezito.listadetarefas.activity.model.Tarefa;
@@ -35,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btnNovaTarefa = findViewById(R.id.btnNovaTarefa);
         listaTarefas = findViewById(R.id.listaTarefas);
-
-
-
 
         listaTarefas.addOnItemTouchListener(
                 new RecyclerItemClickListener(
@@ -71,10 +69,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void carregaTarefas(){
-        Tarefa tarefa = new Tarefa();
-        tarefa.setId(1L);
-        tarefa.setNome("Ir ao mercado");
-        listaDeTarefas.add(tarefa);
+        TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+        listaDeTarefas = tarefaDAO.todasAsTarefas();
 
         adapter = new TarefaAdapter(listaDeTarefas);
 

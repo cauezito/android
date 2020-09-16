@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -40,13 +41,26 @@ public class NovaTarefaActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.salvar:
                 tarefaDAO = new TarefaDAO(getApplicationContext());
+                String nomeTarefa = txtNovaTarefa.getText().toString();
 
-                tarefa = new Tarefa();
-                tarefa.setNome(txtNovaTarefa.getText().toString());
+                if(validaTarefa(nomeTarefa)){
+                    tarefa = new Tarefa();
+                    tarefa.setNome(nomeTarefa);
+                    tarefaDAO.salvar(tarefa);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Digite uma tarefa", Toast.LENGTH_SHORT).show();
+                }
 
-                tarefaDAO.salvar(tarefa);
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean validaTarefa(String nome){
+        if(nome.isEmpty()){
+           return false;
+        }
+        return true;
     }
 }
