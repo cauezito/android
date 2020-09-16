@@ -42,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
                         getApplicationContext(), listaTarefas, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+                        //edição
+                        Tarefa tarefaSelecionada = listaDeTarefas.get(position);
 
+                        Intent intent = new Intent(MainActivity.this, NovaTarefaActivity.class);
+                        intent.putExtra("tarefaSelecionada", tarefaSelecionada);
+                        startActivity(intent);
                     }
 
                     @Override

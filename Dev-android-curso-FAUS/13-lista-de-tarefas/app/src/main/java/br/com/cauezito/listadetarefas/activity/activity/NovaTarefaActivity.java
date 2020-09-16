@@ -22,12 +22,19 @@ public class NovaTarefaActivity extends AppCompatActivity {
     private TextInputEditText txtNovaTarefa;
     private TarefaDAO tarefaDAO;
     private Tarefa tarefa;
+    private Tarefa tarefaAtual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_tarefa);
         txtNovaTarefa = findViewById(R.id.txtNovaTarefa);
+        tarefaAtual = (Tarefa) getIntent().getSerializableExtra("tarefaSelecionada");
+
+        if(tarefaAtual != null){
+            txtNovaTarefa.setText(tarefaAtual.getNome());
+        }
+
     }
 
     @Override
@@ -43,15 +50,27 @@ public class NovaTarefaActivity extends AppCompatActivity {
                 tarefaDAO = new TarefaDAO(getApplicationContext());
                 String nomeTarefa = txtNovaTarefa.getText().toString();
 
-                if(validaTarefa(nomeTarefa)){
-                    tarefa = new Tarefa();
-                    tarefa.setNome(nomeTarefa);
-                    tarefaDAO.salvar(tarefa);
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Digite uma tarefa", Toast.LENGTH_SHORT).show();
-                }
+                //edição
+                if(tarefaAtual != null){
+                    if(validaTarefa(nomeTarefa)){
+                        tarefa = new Tarefa();
+                        tarefa.setNome(nomeTarefa);
+                        tarefa.setId(tarefaAtual.getId());
 
+                        tarefaDAO.atualizar(tarefa);
+                        finish();
+                    }
+                } else { //salvar
+
+                    if (validaTarefa(nomeTarefa)) {
+                        tarefa = new Tarefa();
+                        tarefa.setNome(nomeTarefa);
+                        tarefaDAO.salvar(tarefa);
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Digite uma tarefa", Toast.LENGTH_SHORT).show();
+                    }
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
