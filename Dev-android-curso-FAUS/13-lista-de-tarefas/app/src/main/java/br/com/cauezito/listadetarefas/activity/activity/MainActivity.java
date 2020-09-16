@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                         getApplicationContext(), listaTarefas, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        
+
                     }
 
                     @Override
