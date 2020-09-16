@@ -1,9 +1,11 @@
 package br.com.cauezito.listadetarefas.activity.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -24,5 +26,15 @@ public class NovaTarefaActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.salvar:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
