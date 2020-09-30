@@ -1,4 +1,4 @@
-package br.com.cauezito.firebase;
+package br.com.cauezito.firebaseapp;
 
 import org.junit.Test;
 

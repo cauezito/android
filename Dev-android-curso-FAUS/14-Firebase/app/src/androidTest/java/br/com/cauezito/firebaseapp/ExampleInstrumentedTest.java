@@ -1,4 +1,4 @@
-package br.com.cauezito.firebase;
+package br.com.cauezito.firebaseapp;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("br.com.cauezito.firebase", appContext.getPackageName());
+        assertEquals("br.com.cauezito.firebaseapp", appContext.getPackageName());
     }
 }
