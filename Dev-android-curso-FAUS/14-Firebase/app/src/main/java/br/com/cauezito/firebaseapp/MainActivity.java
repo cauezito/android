@@ -4,7 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Nó raiz do firebase, se não especificado
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -26,7 +32,39 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseReference usuarios = referencia.child("usuarios");
 
-        usuarios.addValueEventListener(new ValueEventListener() {
+        //---VERIFICA USUÁRIO LOGADO---
+        if(auth.getCurrentUser() != null){
+            //logado
+        }
+
+        //---CADASTRANDO USUÁRIO NO FIREBASE---
+        /*auth.createUserWithEmailAndPassword("cauesantos@teste.com", "teste145214").addOnCompleteListener(
+                MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.i("Sucesso", "test");
+                        } else {
+                            Log.i("Falha", "test");
+                        }
+                    }
+                }
+        );*/
+
+
+        //---SALVANDO DADOS NO FIREBASE---
+        /*Usuario usuario = new Usuario();
+        usuario.setNome("Cauê Santos");
+        usuario.setEmail("caue.santos@teste.com.br");
+        usuario.setIdade(23);
+        usuario.setId(1L);
+
+        usuarios.setValue(usuario);
+
+        usuarios.child("001").setValue(usuario);*/
+
+        //--RECUPERANDO DADOS NO FIREBASE--
+        /*usuarios.addValueEventListener(new ValueEventListener() {
             @Override //notifica sempre que um dado for alterado
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -36,16 +74,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        Usuario usuario = new Usuario();
-        usuario.setNome("Cauê Santos");
-        usuario.setEmail("caue.santos@teste.com.br");
-        usuario.setIdade(23);
-        usuario.setId(1L);
-
-        usuarios.setValue(usuario);
-
-        usuarios.child("001").setValue(usuario);
     }
 }
