@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        
+
                     }
                 });
 
@@ -69,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
         usuario.setNome("Cauê Santos");
         usuario.setEmail("caue.santos@teste.com.br");
         usuario.setIdade(23);
-        usuario.setId(1L);
 
         usuarios.setValue(usuario);
 
-        usuarios.child("001").setValue(usuario);*/
+        //push gera um identificador único
+        usuarios.push().setValue(usuario);*/
 
         //--RECUPERANDO DADOS NO FIREBASE--
         /*usuarios.addValueEventListener(new ValueEventListener() {

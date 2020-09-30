@@ -3,18 +3,10 @@ package br.com.cauezito.firebaseapp;
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
-    private Long id;
     private String nome;
     private String email;
     private int idade;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
