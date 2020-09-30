@@ -37,6 +37,18 @@ public class MainActivity extends AppCompatActivity {
             //logado
         }
 
+        //---LOGAR USUÁRIO---
+        auth.signInWithEmailAndPassword("cauesantos@teste.com", "teste145214")
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        
+                    }
+                });
+
+        //---DESLOGAR USUÁRIO---
+        auth.signOut();
+
         //---CADASTRANDO USUÁRIO NO FIREBASE---
         /*auth.createUserWithEmailAndPassword("cauesantos@teste.com", "teste145214").addOnCompleteListener(
                 MainActivity.this, new OnCompleteListener<AuthResult>() {
