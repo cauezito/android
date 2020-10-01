@@ -1,4 +1,4 @@
-package br.com.cauezito.firebaseapp;
+package br.com.cauezito.firebaseapp.model;
 
 import java.io.Serializable;
 

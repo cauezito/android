@@ -1,8 +1,9 @@
-package br.com.cauezito.firebaseapp;
+package br.com.cauezito.firebaseapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,15 +30,18 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.UUID;
 
+import br.com.cauezito.firebaseapp.R;
+import br.com.cauezito.firebaseapp.model.Usuario;
 import br.com.cauezito.firebaseapp.database.Firebase;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imgFoto;
     private Button btnUpload;
-    private Firebase firebase;
+    private Button btnImagem;
+    private Button btnUsuario;
+    private Firebase firebase = new Firebase();
 
-    private DatabaseReference raizDatabase = firebase.getRaizDatabase();
     private DatabaseReference usuariosDatabase = firebase.getUsuariosDatabase();
 
     private FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -50,17 +54,27 @@ public class MainActivity extends AppCompatActivity {
 
         imgFoto = findViewById(R.id.imgFoto);
         btnUpload = findViewById(R.id.btnUpload);
+        btnImagem = findViewById(R.id.btnImagem);
+        btnUsuario = findViewById(R.id.btnUsuario);
 
-        btnUpload.setOnClickListener(new View.OnClickListener() {
+        btnImagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImagem();
+                Intent intent = new Intent(getApplicationContext(), ImagensActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UsuariosActivity.class);
+                startActivity(intent);
             }
         });
     }
 
     private void uploadImagem() {
-        final Firebase firebase = new Firebase();
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
