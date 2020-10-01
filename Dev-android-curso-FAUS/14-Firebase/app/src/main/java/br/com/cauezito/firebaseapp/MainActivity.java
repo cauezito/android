@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,8 +70,26 @@ public class MainActivity extends AppCompatActivity {
                 //define nós para storage
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
                 StorageReference imagens = storageReference.child("imagens");
+                StorageReference imagemRef = imagens.child("celular.jpeg");
+
+                Glide.with(MainActivity.this).load(imagemRef).into(imgFoto);
+
+                //deletar arquivos
+                /*imagemRef.delete().addOnFailureListener(MainActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                }).addOnSuccessListener(MainActivity.this, new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                });
+
 
                 //gera nome para o arquivo
+                /*
                 String nome = UUID.randomUUID().toString(); //randômico
                 StorageReference imagemRef = imagens.child(nome + ".jpeg");
 
@@ -87,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
 
                     }
-                });
+                });*/
 
             }
         });
