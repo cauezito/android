@@ -139,22 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 });*/
     }
 
-    private void cadastraUsuario(){
-        //---CADASTRANDO USUÁRIO NO FIREBASE---
-        auth.createUserWithEmailAndPassword("cauesantos@teste.com", "teste145214").addOnCompleteListener(
-                MainActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Log.i("CadastroRealizado", "cadastro realizado");
-                        } else {
-                            Log.i("CadastroNaoRealizado", "cadastro não realizado");
-                        }
-                    }
-                }
-        );
-    }
-
     private boolean verificaSessao(){
         if(auth.getCurrentUser() != null){
             Log.i("Logado", "sim");
@@ -180,40 +164,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void pesquisaUsuarios(){
-
-        //pesquisar usuário por ID
-        DatabaseReference usuarioPesquisa = usuariosDatabase.child("-MIZ1NFkSib46WHACokw");
-
-        usuarioPesquisa.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Popula a classe com os dados retornados
-                Usuario dadosRecebidos = dataSnapshot.getValue(Usuario.class);
-                //dados do usuário pesquisado
-                Log.i("Dados usuário string: ", dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        //pesquisa utilizando queries
-
-        //ordena os dados e então realiza a pesquisa com filtros
-        Query usuarioNome = usuariosDatabase.orderByChild("nome").equalTo("Cauê");
-
-        //>=40 <=60
-        Query usuarioIdadeMaiorIgual = usuariosDatabase.orderByChild("idade").startAt(40).endAt(60);
-
-        //<= 20
-        Query usuarioIdadeMenorIgual = usuariosDatabase.orderByChild("idade").endAt(20);
-
-        //palavras que iniciam com C - p/ firebase interpretar o C realmente como C \uf8ff
-        Query usuarioFiltro = usuariosDatabase.orderByChild("nome").startAt("C").endAt("C" + "\uf8ff");
-    }
 
     private void listenerDados(){
         usuariosDatabase.addValueEventListener(new ValueEventListener() {
@@ -229,13 +179,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void salvaDados(){
-        Usuario usuario = new Usuario();
-        usuario.setNome("Ana");
-        usuario.setEmail("ana.santos@teste.com.br");
-        usuario.setIdade(78);
 
-        //push gera um identificador único
-        usuariosDatabase.push().setValue(usuario);
-    }
 }

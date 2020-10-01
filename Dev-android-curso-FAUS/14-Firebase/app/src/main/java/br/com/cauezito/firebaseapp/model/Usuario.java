@@ -6,7 +6,7 @@ public class Usuario implements Serializable {
     private String nome;
     private String email;
     private int idade;
-
+    private String senha;
 
     public String getNome() {
         return nome;
@@ -31,4 +31,8 @@ public class Usuario implements Serializable {
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
+    public String getSenha() { return senha; }
+
+    public void setSenha(String senha) { this.senha = senha; }
 }
