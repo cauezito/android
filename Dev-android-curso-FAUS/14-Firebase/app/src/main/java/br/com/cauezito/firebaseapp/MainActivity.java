@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,13 +33,43 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseReference usuarios = referencia.child("usuarios");
 
+        //pesquisar usuário por ID
+        /*DatabaseReference usuarioPesquisa = usuarios.child("-MIZ1NFkSib46WHACokw");
+
+        usuarioPesquisa.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Popula a classe com os dados retornados
+                Usuario dadosRecebidos = dataSnapshot.getValue(Usuario.class);
+                //dados do usuário pesquisado
+                Log.i("Dados usuário string: ", dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        })*/
+
+        //pesquisa utilizando queries
+        //ordena os dados e então realiza a pesquisa com filtros
+        Query usuarioPesquisado = usuarios.orderByChild("nome").equalTo("Cauê");
+
+        //>=40 <=60
+        Query usuarioIdade = usuarios.orderByChild("idade").startAt(40).endAt(60);
+        //<= 20
+        Query usuarioIdade2 = usuarios.orderByChild("idade").endAt(20);
+
+        //palavras que iniciam com C - firebase interpreta o J realmente como a letra J \uf8ff
+        Query usuarioNome = usuarios.orderByChild("nome").startAt("C").endAt("C" + "\uf8ff");
+
         //---VERIFICA USUÁRIO LOGADO---
         if(auth.getCurrentUser() != null){
             //logado
         }
 
         //---LOGAR USUÁRIO---
-        auth.signInWithEmailAndPassword("cauesantos@teste.com", "teste145214")
+        /*auth.signInWithEmailAndPassword("cauesantos@teste.com", "teste145214")
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -66,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
         //---SALVANDO DADOS NO FIREBASE---
         /*Usuario usuario = new Usuario();
-        usuario.setNome("Cauê Santos");
-        usuario.setEmail("caue.santos@teste.com.br");
-        usuario.setIdade(23);
+        usuario.setNome("Ana");
+        usuario.setEmail("ana.santos@teste.com.br");
+        usuario.setIdade(78);
 
-        usuarios.setValue(usuario);
+        //usuarios.setValue(usuario);
 
         //push gera um identificador único
         usuarios.push().setValue(usuario);*/
